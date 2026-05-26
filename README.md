@@ -323,12 +323,17 @@ Determines whether branch should be taken.
 
 - addi x1,x0,5
 - addi x2,x0,10
+- addi x10,x0,100
 - add x3,x1,x2
 - sub x4,x2,x1
 - sw x3,0(x10)
 - lw x5,0(x10)
 - beq x3,x5,label
 - jal x1,target
+- label:
+- addi x6,x0,4
+- target:
+- sub x7,x6,x1
 
 ## Tools Used
 
