@@ -98,223 +98,190 @@ Stores the current instruction address.
 <img width="306" height="180" alt="image" src="https://github.com/user-attachments/assets/07666edb-ce08-4f8d-beb3-3461c631cb97" />
 
 
-2. PC + 4
-Function
+**2. PC + 4**
 
+**Function**
 Calculates sequential next instruction address.
 
-Equation
-PC + 4
-Block Diagram
-        +-----------+
-pc ---->| PC + 4    |-----> next_pc
-        +-----------+
-3. Instruction Memory
-Function
+**Equation**
+- PC + 4
 
+**Block Diagram**
+ 
+<img width="278" height="113" alt="image" src="https://github.com/user-attachments/assets/477333f1-f2a4-4da1-b222-2d5da5710273" />
+ 
+**3. Instruction Memory**
+
+**Function**
 Fetches instructions from memory.
 
-Features
-Word aligned access
-Uses $readmemh
-Block Diagram
-        +------------------+
-addr -->| Instruction Mem  |-----> instruction
-        +------------------+
-4. Register File
-Function
+**Features**
+- Word aligned access
+- Uses $readmemh
 
+**Block Diagram**
+
+<img width="261" height="106" alt="image" src="https://github.com/user-attachments/assets/76826071-82c1-4be3-936b-4f2f62a1de4b" />
+
+**4. Register File**
+
+**Function**
 Stores 32 general-purpose registers.
 
-Features
-Two read ports
-One write port
-x0 hardwired to zero
-Block Diagram
-               +----------------+
-rs1 ---------->|                |-----> data1
-rs2 ---------->| Register File  |-----> data2
-rd ------------|                |
-dataW -------->|                |
-regWen ------->|                |
-clk ---------->|                |
-               +----------------+
-5. Arithmetic Logic Unit (ALU)
-Function
+**Features**
+- Two read ports
+- One write port
+- x0 hardwired to zero
 
+**Block Diagram**
+
+<img width="378" height="245" alt="image" src="https://github.com/user-attachments/assets/96ed161c-026f-4f6c-8c9f-0494a18c0f96" />
+
+**5. Arithmetic Logic Unit (ALU)**
+
+**Function**
 Performs arithmetic and logical operations.
 
-Supported Operations
-Addition
-Subtraction
-Shift Operations
-Comparisons
-AND / OR / XOR
-Block Diagram
-            +----------------+
-op1 -------->|                |
-op2 -------->|      ALU       |-----> result
-AluSel ----->|                |
-            +----------------+
-6. Immediate Generator
-Function
+**Supported Operations**
+- Addition
+- Subtraction
+- Shift Operations
+- Comparisons
+- AND / OR / XOR
 
+**Block Diagram**
+
+<img width="402" height="196" alt="image" src="https://github.com/user-attachments/assets/e1d442ec-2d05-4b25-bf48-ee1ad82471d1" />
+     
+**6. Immediate Generator**
+
+**Function**
 Generates sign-extended immediates.
 
-Supported Formats
-I-Type
-S-Type
-B-Type
-J-Type
-U-Type
-Block Diagram
-            +----------------+
-instruction->| Immediate Gen |
-             +-------+--------+
-                     |
-                     v
-               immediate
-7. Control Unit
-Function
+**Supported Formats**
+- I-Type
+- S-Type
+- B-Type
+- J-Type
+- U-Type
 
+**Block Diagram
+
+<img width="385" height="143" alt="image" src="https://github.com/user-attachments/assets/638c7f87-8716-48bc-9bbe-cf59a7bbb96b" />
+
+**7. Control Unit**
+
+**Function**
 Decodes instruction opcode and generates control signals.
 
-Generated Signals
-regWen
-memRw
-wbsel
-pcsel
-asel
-bsel
-imm_sel
-branch
-BrUn
-AluSel
-Block Diagram
-            +----------------+
-opcode ---->|                |
-func3 ----->| Control Unit   |-----> control signals
-func7 ----->|                |
-            +----------------+
-8. Data Memory
-Function
+**Generated Signals**
+- regWen
+- memRw
+- wbsel
+- pcsel
+- asel
+- bsel
+- imm_sel
+- jalr_sel
+- AluSel
+  
+**Block Diagram**
 
+<img width="409" height="142" alt="image" src="https://github.com/user-attachments/assets/02ddf836-4d4c-40c5-86be-6eb4520f17c4" />
+
+**8. Data Memory**
+
+**Function**
 Performs load and store operations.
 
-Supported Instructions
-Loads
-lb
-lh
-lw
-lbu
-lhu
-Stores
-sb
-sh
-sw
-Block Diagram
-             +----------------+
-address ---->|                |
-write_data ->|   Data Memory  |-----> read_data
-memRw ------>|                |
-func3 ------>|                |
-clk -------->|                |
-             +----------------+
-9. Write Back Multiplexer
-Function
+**Supported Instructions**
 
+**Loads**
+- lb
+- lh
+- lw
+- lbu
+- lhu
+
+**Stores**
+- sb
+- sh
+- sw
+  
+**Block Diagram**
+
+<img width="372" height="224" alt="image" src="https://github.com/user-attachments/assets/19251d87-6a41-4521-9172-bd0c400e9ca7" />
+
+**9. Write Back Multiplexer**
+
+**Function**
 Selects data written back to register file.
 
-Sources
-ALU Result
-Data Memory Output
-PC + 4
-Block Diagram
-               +----------------+
-alu_result --->|                |
-dataR -------->|    WB MUX      |-----> wb_data
-pc_plus_4 ---->|                |
-wbsel -------->|                |
-               +----------------+
-10. A MUX
-Function
+**Sources**
+- ALU Result
+- Data Memory Output
+- PC + 4
 
+**Block Diagram**    
+
+<img width="386" height="224" alt="image" src="https://github.com/user-attachments/assets/d68996a7-d8c5-43f6-a8b8-a72918436e1b" />
+
+**10. A_MUX**
+
+**Function**
 Selects ALU operand A.
 
-Sources
-PC
-rs1 data
-Block Diagram
-          +--------------+
-PC ------>|              |
-rs1 ----->|    A MUX     |-----> ALU op1
-asel ---->|              |
-          +--------------+
-11. PC MUX
-Function
+**Sources**
+- PC
+- data1
+  
+**Block Diagram**
 
+<img width="386" height="224" alt="image" src="https://github.com/user-attachments/assets/c460ab03-3555-4b58-b5cc-083a0a5c689c" />
+
+       
+**11. PC MUX**
+
+**Function**
 Selects next PC source.
 
-Sources
-PC + 4
-Branch Target
-Jump Target
-Block Diagram
-                 +----------------+
-PC+4 ----------->|                |
-ALU Result ------>|    PC MUX     |-----> next_pc
-pcsel ----------->|                |
-                  +----------------+
-12. Branch Comparator
-Function
+**Sources**
+- PC + 4
+- Branch Target
+- Jump Target
 
+**Block Diagram**
+
+
+**12. Branch Comparator**
+
+**Function**
 Performs branch comparisons.
 
-Outputs
-Eq
-Lt
-Block Diagram
-             +----------------+
-data1 ------>|                |
-data2 ------>| Branch Compare |-----> Eq
-BrUn ------->|                |-----> Lt
-             +----------------+
-13. Branch Unit
-Function
+**Outputs**
+- Eq
+- Lt
 
+**Block Diagram**
+
+            
+**13. Branch Unit**
+
+**Function**
 Determines whether branch should be taken.
 
-Supported Branches
-beq
-bne
-blt
-bge
-bltu
-bgeu
-Block Diagram
+**Supported Branches**
+- beq
+- bne
+- blt
+- bge
+- bltu
+- bgeu
+
+**Block Diagram**
 
 
 
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
-## Block Diagram
-**  **
 
 
 
