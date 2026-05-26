@@ -27,3 +27,54 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - **J-type**: `jal`
 
 ## Project Structure
+riscv-single-cycle-processor/
+├── src/
+│   ├── top.sv
+│   ├── program_counter.sv
+│   ├── pc_plus_4.sv
+│   ├── inst_mem.sv
+│   ├── reg_file.sv
+│   ├── alu.sv
+│   ├── a_mux.sv
+│   ├── b_mux.sv
+│   ├── imm_gen.sv
+│   ├── control_unit.sv
+│   ├── data_mem.sv
+│   ├── wb_mux.sv
+│   ├── pc_mux.sv
+│   ├── branch_comp.sv
+│   └── branch_unit.sv
+├── memory/
+│   └── inst_mem.mem
+└── README.md
+
+## Block Diagram
+
+```mermaid
+flowchart TD
+    PC[Program Counter] --> IMEM[Instruction Memory]
+    IMEM --> CU[Control Unit]
+    IMEM --> RF[Register File]
+    IMEM --> IMM[Immediate Generator]
+    RF --> AMUX[A-MUX]
+    RF --> BMUX[B-MUX]
+    IMM --> BMUX
+    AMUX --> ALU[ALU]
+    BMUX --> ALU
+    ALU --> DMEM[Data Memory]
+    ALU --> PCMUX[PC MUX]
+    DMEM --> WBMUX[Writeback MUX]
+    ALU --> WBMUX
+    PC_PLUS4[PC+4] --> WBMUX
+    WBMUX --> RF
+    PC_PLUS4 --> PCMUX
+    PCMUX --> PC
+
+How to Run
+
+Clone the repository
+Open in Vivado / Quartus / EDA Playground
+Add all files from src/ folder
+Set top.sv as top module
+Load inst_mem.mem in instruction memory
+Run Simulation
