@@ -35,6 +35,7 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - sra
 - or
 - and
+  
 **I-Type**
 - addi
 - slli
@@ -45,16 +46,19 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - srai
 - ori
 - andi
+
 **Load Instructions**
 - lb
 - lh
 - lw
 - lbu
 - lhu
+
 **Store Instructions**
 - sb
 - sh
 - sw
+
 **Branch Instructions**
 - beq
 - bne
@@ -62,9 +66,11 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - bge
 - bltu
 - bgeu
+
 **Jump Instructions**
 - jal
 - jalr
+
 **U-Type Instructions**
 - lui
 - auipc
