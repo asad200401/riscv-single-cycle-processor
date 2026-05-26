@@ -92,8 +92,10 @@ Stores the current instruction address.
 
 **Outputs**
 - pc
-Block Diagram
-**  **
+  
+**Block Diagram**
+<img width="317" height="181" alt="image" src="https://github.com/user-attachments/assets/0177b386-8229-4d9d-b451-a649db864f5c" />
+
 ## Block Diagram
 **  **
 ## Block Diagram
