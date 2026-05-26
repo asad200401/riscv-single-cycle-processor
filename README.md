@@ -2,6 +2,7 @@
 
 ![RISC-V](https://img.shields.io/badge/RISC--V-RV32I-blue)
 ![SystemVerilog](https://img.shields.io/badge/Language-SystemVerilog-orange)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A complete **Single-Cycle RISC-V RV32I** processor implemented in SystemVerilog from scratch.
 
