@@ -7,15 +7,20 @@ A complete **Single-Cycle RISC-V RV32I** processor implemented in SystemVerilog 
 
 ## Description
 
-A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Supports all base integer instructions (R, I, S, B, U, J types). Fully synthesizable with clean modular design.
+A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Supports all base integer instructions (R, I, S, B, U, J types).
 
 ## Features
 
-- **Architecture**: Single-Cycle RV32I
-- **Instruction Set**: Full Base Integer (RV32I)
-- **Supported Types**: R, I, S, B, U, J
-- **Memory**: Separate Instruction and Data Memory
-- **Modular Design**: Clean separation of each stage
+- 32-bit datapath
+- Single-cycle architecture
+- Separate instruction and data memory
+- Register file with 32 registers
+- ALU supporting arithmetic and logical operations
+- Immediate generator for multiple instruction formats
+- Control unit for instruction decoding
+- Jump and branch support
+- Load/store memory interface
+- Modular SystemVerilog design
 
 ## Supported Instructions
 
