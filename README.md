@@ -75,27 +75,9 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - lui
 - auipc
 
-## Project Structure
-riscv-single-cycle-processor/
-├── src/
-│   ├── top.sv
-│   ├── program_counter.sv
-│   ├── pc_plus_4.sv
-│   ├── inst_mem.sv
-│   ├── reg_file.sv
-│   ├── alu.sv
-│   ├── a_mux.sv
-│   ├── b_mux.sv
-│   ├── imm_gen.sv
-│   ├── control_unit.sv
-│   ├── data_mem.sv
-│   ├── wb_mux.sv
-│   ├── pc_mux.sv
-│   ├── branch_comp.sv
-│   └── branch_unit.sv
-├── memory/
-│   └── inst_mem.mem
-└── README.md
+## RISC-V Datapath
+
+<img width="722" height="385" alt="image" src="https://github.com/user-attachments/assets/798d6b09-0b15-4289-a37b-1b8362bff9a4" />
 
 ## Block Diagram
 
