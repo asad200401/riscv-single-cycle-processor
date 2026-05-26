@@ -165,7 +165,7 @@ Generates sign-extended immediates.
 - J-Type
 - U-Type
 
-**Block Diagram
+**Block Diagram**
 
 <img width="385" height="143" alt="image" src="https://github.com/user-attachments/assets/638c7f87-8716-48bc-9bbe-cf59a7bbb96b" />
 
@@ -229,7 +229,7 @@ Selects data written back to register file.
 **10. A_MUX**
 
 **Function**
-Selects ALU operand A.
+Selects data1 or PC.
 
 **Sources**
 - PC
@@ -237,9 +237,21 @@ Selects ALU operand A.
   
 **Block Diagram**
 
-<img width="386" height="224" alt="image" src="https://github.com/user-attachments/assets/c460ab03-3555-4b58-b5cc-083a0a5c689c" />
+<img width="403" height="225" alt="image" src="https://github.com/user-attachments/assets/52a4c254-f6d9-450f-8914-8bfa16343b8b" />
 
-       
+**10. B_MUX**
+
+**Function**
+Selects imm value or data2.
+
+**Sources**
+- imm_out
+- data2
+  
+**Block Diagram**
+
+<img width="394" height="211" alt="image" src="https://github.com/user-attachments/assets/9ea94c11-008e-49b4-be3c-cd38a52f3f22" />
+
 **11. PC MUX**
 
 **Function**
@@ -252,6 +264,7 @@ Selects next PC source.
 
 **Block Diagram**
 
+<img width="411" height="227" alt="image" src="https://github.com/user-attachments/assets/1d3dc9ef-70f8-48ba-8d27-54873fc3b6ca" />
 
 **12. Branch Comparator**
 
@@ -264,6 +277,7 @@ Performs branch comparisons.
 
 **Block Diagram**
 
+<img width="368" height="219" alt="image" src="https://github.com/user-attachments/assets/6ef11d69-ca0f-4486-8a30-61fecafb5862" />
             
 **13. Branch Unit**
 
@@ -280,36 +294,18 @@ Determines whether branch should be taken.
 
 **Block Diagram**
 
+<img width="430" height="221" alt="image" src="https://github.com/user-attachments/assets/2ed69095-313b-42b9-95ae-d8e4bfa18812" />
 
 
+## Instruction Flow
 
+PC
+ -> Instruction Fetch
+ -> Instruction Decode
+ -> Register Read
+ -> Immediate Generation
+ -> ALU Execution
+ -> Memory Access
+ -> Write Back
+ -> Next PC Update
 
-
-```mermaid
-flowchart TD
-    PC[Program Counter] --> IMEM[Instruction Memory]
-    IMEM --> CU[Control Unit]
-    IMEM --> RF[Register File]
-    IMEM --> IMM[Immediate Generator]
-    RF --> AMUX[A-MUX]
-    RF --> BMUX[B-MUX]
-    IMM --> BMUX
-    AMUX --> ALU[ALU]
-    BMUX --> ALU
-    ALU --> DMEM[Data Memory]
-    ALU --> PCMUX[PC MUX]
-    DMEM --> WBMUX[Writeback MUX]
-    ALU --> WBMUX
-    PC_PLUS4[PC+4] --> WBMUX
-    WBMUX --> RF
-    PC_PLUS4 --> PCMUX
-    PCMUX --> PC
-
-How to Run
-
-Clone the repository
-Open in Vivado / Quartus / EDA Playground
-Add all files from src/ folder
-Set top.sv as top module
-Load inst_mem.mem in instruction memory
-Run Simulation
