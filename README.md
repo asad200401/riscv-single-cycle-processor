@@ -300,12 +300,12 @@ Determines whether branch should be taken.
 ## Instruction Flow
 
 PC
- -> Instruction Fetch
- -> Instruction Decode
- -> Register Read
- -> Immediate Generation
- -> ALU Execution
- -> Memory Access
- -> Write Back
- -> Next PC Update
+- Instruction Fetch
+- Instruction Decode
+- Register Read
+- Immediate Generation
+- ALU Execution
+- Memory Access
+- Write Back
+- Next PC Update
 
