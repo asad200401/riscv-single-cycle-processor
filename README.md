@@ -338,8 +338,10 @@ Determines whether branch should be taken.
 ## Author
 
 **Asad Iqbal**
+
 Built as part of RISC-V learning project.
 
 **Star ⭐ this repo if you find it useful!**
+
 Contributions and improvements are welcome.
 
