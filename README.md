@@ -98,6 +98,202 @@ Stores the current instruction address.
 <img width="306" height="180" alt="image" src="https://github.com/user-attachments/assets/07666edb-ce08-4f8d-beb3-3461c631cb97" />
 
 
+2. PC + 4
+Function
+
+Calculates sequential next instruction address.
+
+Equation
+PC + 4
+Block Diagram
+        +-----------+
+pc ---->| PC + 4    |-----> next_pc
+        +-----------+
+3. Instruction Memory
+Function
+
+Fetches instructions from memory.
+
+Features
+Word aligned access
+Uses $readmemh
+Block Diagram
+        +------------------+
+addr -->| Instruction Mem  |-----> instruction
+        +------------------+
+4. Register File
+Function
+
+Stores 32 general-purpose registers.
+
+Features
+Two read ports
+One write port
+x0 hardwired to zero
+Block Diagram
+               +----------------+
+rs1 ---------->|                |-----> data1
+rs2 ---------->| Register File  |-----> data2
+rd ------------|                |
+dataW -------->|                |
+regWen ------->|                |
+clk ---------->|                |
+               +----------------+
+5. Arithmetic Logic Unit (ALU)
+Function
+
+Performs arithmetic and logical operations.
+
+Supported Operations
+Addition
+Subtraction
+Shift Operations
+Comparisons
+AND / OR / XOR
+Block Diagram
+            +----------------+
+op1 -------->|                |
+op2 -------->|      ALU       |-----> result
+AluSel ----->|                |
+            +----------------+
+6. Immediate Generator
+Function
+
+Generates sign-extended immediates.
+
+Supported Formats
+I-Type
+S-Type
+B-Type
+J-Type
+U-Type
+Block Diagram
+            +----------------+
+instruction->| Immediate Gen |
+             +-------+--------+
+                     |
+                     v
+               immediate
+7. Control Unit
+Function
+
+Decodes instruction opcode and generates control signals.
+
+Generated Signals
+regWen
+memRw
+wbsel
+pcsel
+asel
+bsel
+imm_sel
+branch
+BrUn
+AluSel
+Block Diagram
+            +----------------+
+opcode ---->|                |
+func3 ----->| Control Unit   |-----> control signals
+func7 ----->|                |
+            +----------------+
+8. Data Memory
+Function
+
+Performs load and store operations.
+
+Supported Instructions
+Loads
+lb
+lh
+lw
+lbu
+lhu
+Stores
+sb
+sh
+sw
+Block Diagram
+             +----------------+
+address ---->|                |
+write_data ->|   Data Memory  |-----> read_data
+memRw ------>|                |
+func3 ------>|                |
+clk -------->|                |
+             +----------------+
+9. Write Back Multiplexer
+Function
+
+Selects data written back to register file.
+
+Sources
+ALU Result
+Data Memory Output
+PC + 4
+Block Diagram
+               +----------------+
+alu_result --->|                |
+dataR -------->|    WB MUX      |-----> wb_data
+pc_plus_4 ---->|                |
+wbsel -------->|                |
+               +----------------+
+10. A MUX
+Function
+
+Selects ALU operand A.
+
+Sources
+PC
+rs1 data
+Block Diagram
+          +--------------+
+PC ------>|              |
+rs1 ----->|    A MUX     |-----> ALU op1
+asel ---->|              |
+          +--------------+
+11. PC MUX
+Function
+
+Selects next PC source.
+
+Sources
+PC + 4
+Branch Target
+Jump Target
+Block Diagram
+                 +----------------+
+PC+4 ----------->|                |
+ALU Result ------>|    PC MUX     |-----> next_pc
+pcsel ----------->|                |
+                  +----------------+
+12. Branch Comparator
+Function
+
+Performs branch comparisons.
+
+Outputs
+Eq
+Lt
+Block Diagram
+             +----------------+
+data1 ------>|                |
+data2 ------>| Branch Compare |-----> Eq
+BrUn ------->|                |-----> Lt
+             +----------------+
+13. Branch Unit
+Function
+
+Determines whether branch should be taken.
+
+Supported Branches
+beq
+bne
+blt
+bge
+bltu
+bgeu
+Block Diagram
+
+
 
 ## Block Diagram
 **  **
