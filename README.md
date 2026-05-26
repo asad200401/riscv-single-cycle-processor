@@ -22,14 +22,52 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - Load/store memory interface
 - Modular SystemVerilog design
 
-## Supported Instructions
+## Supported RV32I Instructions
 
-- **R-type**: `add, sub, sll, slt, sltu, xor, srl, sra, or, and`
-- **I-type**: `addi, slti, sltiu, xori, ori, andi, slli, srli, srai, lw, lh, lb, lhu, lbu, jalr`
-- **S-type**: `sw, sh, sb`
-- **B-type**: `beq, bne, blt, bge, bltu, bgeu`
-- **U-type**: `lui, auipc`
-- **J-type**: `jal`
+**R-type**
+- add
+- sub
+- sll
+- slt
+- sltu
+- xor
+- srl
+- sra
+- or
+- and
+**I-Type**
+- addi
+- slli
+- slti
+- sltiu
+- xori
+- srli
+- srai
+- ori
+- andi
+**Load Instructions**
+- lb
+- lh
+- lw
+- lbu
+- lhu
+**Store Instructions**
+- sb
+- sh
+- sw
+**Branch Instructions**
+- beq
+- bne
+- blt
+- bge
+- bltu
+- bgeu
+**Jump Instructions**
+- jal
+- jalr
+**U-Type Instructions**
+- lui
+- auipc
 
 ## Project Structure
 riscv-single-cycle-processor/
