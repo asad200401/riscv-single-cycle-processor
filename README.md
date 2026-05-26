@@ -79,7 +79,43 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 
 <img width="722" height="385" alt="image" src="https://github.com/user-attachments/assets/798d6b09-0b15-4289-a37b-1b8362bff9a4" />
 
+## Module Descriptions
+**1. Program Counter**
+
+**Function**
+Stores the current instruction address.
+
+**Inputs**
+- clk
+- rst
+- next_pc
+
+**Outputs**
+- pc
+Block Diagram
+**  **
 ## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+## Block Diagram
+**  **
+
+
 
 ```mermaid
 flowchart TD
