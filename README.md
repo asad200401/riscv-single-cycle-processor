@@ -299,7 +299,7 @@ Determines whether branch should be taken.
 
 ## Instruction Flow
 
-PC
+- PC
 - Instruction Fetch
 - Instruction Decode
 - Register Read
@@ -308,4 +308,38 @@ PC
 - Memory Access
 - Write Back
 - Next PC Update
+
+## Simulation
+
+**Vivado Simulation**
+- Add RTL files
+- Add testbench files
+- Add .mem files
+- Run Behavioral Simulation
+- Observe waveforms
+
+## Example Test Program
+
+- addi x1,x0,5
+- addi x2,x0,10
+- add x3,x1,x2
+- sub x4,x2,x1
+- sw x3,0(x10)
+- lw x5,0(x10)
+- beq x3,x5,label
+- jal x1,target
+
+## Tools Used
+
+- SystemVerilog
+- Xilinx Vivado
+- Venus RISC-V Simulator
+
+## Author
+
+**Asad Iqbal**
+Built as part of RISC-V learning project.
+
+**Star ⭐ this repo if you find it useful!**
+Contributions and improvements are welcome.
 
