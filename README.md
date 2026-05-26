@@ -335,6 +335,28 @@ Determines whether branch should be taken.
 - target:
 - sub x7,x6,x1
 
+## Simulation Results
+
+<img width="1366" height="447" alt="image" src="https://github.com/user-attachments/assets/4541587a-f264-4925-aa61-dbb74d7297df" />
+
+**Key Observations:**
+- Correct execution of arithmetic operations (add, sub, addi)
+- Successful Store and Load operations (sw → lw)
+- Correct Branch behavior (beq taken)
+- Successful Jump (jal) with proper PC update and link register (x1) update
+
+**Register File after execution:**
+
+<img width="296" height="455" alt="image" src="https://github.com/user-attachments/assets/1e02559c-a79a-4553-bbec-f093f297307c" />
+
+x1 = 5, x2 = 10, x3 = 15, x4 = 5, x5 = 15, x6 = 4, x7 = -1, x10 = 100
+
+**Data Memory:**
+
+<img width="302" height="485" alt="image" src="https://github.com/user-attachments/assets/a0ac864f-ae87-4b58-96ed-5ec012c6f312" />
+
+mem[25] = 15 (value stored by sw)
+
 ## Tools Used
 
 - SystemVerilog
