@@ -20,47 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module top_tb;
-
     logic clk;
     logic rst;
 
-    // Instantiate the top module
-    top dut (
-        .clk(clk),
-        .rst(rst)
-    );
+    top dut (.clk(clk),.rst(rst));
 
-    // Clock generation
+    always #5 clk = ~clk;
+    
     initial begin
         clk = 0;
-        forever #5 clk = ~clk;  // 10ns period (100 MHz)
-    end
-
-    // Test stimulus
-    initial begin
-        $dumpfile("top_tb.vcd");
-        $dumpvars(0, top_tb);
-
         rst = 1;
         #20;
         rst = 0;
-
-        $display("=== RISC-V Single Cycle Processor Test Started ===");
-
-        // Run for sufficient cycles to execute all instructions
-        repeat(100) @(posedge clk);
-
-        $display("=== Simulation Finished ===");
-        $display("Final Register Values:");
-        $display("x1  = %0d", dut.rf.reg_file[1]);
-        $display("x2  = %0d", dut.rf.reg_file[2]);
-        $display("x3  = %0d", dut.rf.reg_file[3]);
-        $display("x5  = %0d", dut.rf.reg_file[5]);
-        $display("x6  = %0d", dut.rf.reg_file[6]);
-        $display("x7  = %0d", dut.rf.reg_file[7]);
-
-        #50;
+        #1000;   
         $finish;
     end
-
 endmodule
