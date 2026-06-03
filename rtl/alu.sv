@@ -28,12 +28,8 @@ module alu(
     
     always_comb begin
         case (AluSel)
-            4'd0: begin //add
-            alu_result = op1 + op2;
-        end
-            4'd8: begin // sub
-            alu_result = op1 - op2;
-        end
+            4'd0: alu_result = op1 + op2;  //add
+            4'd8: alu_result = op1 - op2;  // sub
             4'd1: alu_result = op1 << op2[4:0]; // sll
             4'd2: alu_result = {31'b0, (op1 < op2) ? 1'b1 : 1'b0}; // slt
             4'd3: alu_result = {31'b0, ($unsigned(op1) < $unsigned(op2)) ? 1'b1 : 1'b0}; // sltu
