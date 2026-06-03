@@ -21,11 +21,11 @@
 
 
 module b_mux(
-    input logic [31:0]data1,data2,
+    input logic [31:0]data2,imm_out,
     input logic bsel,
     output logic [31:0]b_mux_out
     );
     
-    assign b_mux_out = bsel ? data2 : data1;
+    assign b_mux_out = bsel ? imm_out : data2;
     
 endmodule
