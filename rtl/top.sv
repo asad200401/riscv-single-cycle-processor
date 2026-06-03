@@ -53,7 +53,7 @@ module top (
      
     imm_gen immgen (.imm_in(instr[31:7]),.imm_sel(imm_sel),.imm_out(imm_out));
      
-    b_mux bmux (.data1(op2),.data2(imm_out),.bsel(bsel),.b_mux_out(b_mux_out));
+    b_mux bmux (.data2(op2),.imm_out(imm_out),.bsel(bsel),.b_mux_out(b_mux_out));
       
     control_unit cu (.opcode(instr[6:0]),.func3(instr[14:12]),.func7(instr[30]),.regWen(regWen),.bsel(bsel),.AluSel(AluSel),.memRw(memRw),.wbsel(wbsel),.imm_sel(imm_sel),.asel(asel),.pcsel(pcsel),.jalr_sel(jalr_sel));
       
