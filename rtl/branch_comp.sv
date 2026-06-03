@@ -27,7 +27,7 @@ module branch_comp(
     output logic Lt
 );
     assign Eq = (data1 == data2);
-    assign Lt = BrUn ?($unsigned(data1) < $unsigned(data2)) : ($signed(data1) < $signed(data2));
+    assign Lt = BrUn ? ($unsigned(data1) < $unsigned(data2)) : ($signed(data1) < $signed(data2));
 
 endmodule
 
