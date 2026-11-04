@@ -41,7 +41,7 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 
 ## Simulation
 
-## Example Test Program
+**Example Test Program**
 
 - addi x1, x0, 5
 - addi x2, x0, 10
