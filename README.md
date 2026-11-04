@@ -41,8 +41,6 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 
 ## Simulation
 
-**Vivado Simulation**
-
 ## Example Test Program
 
 - addi x1, x0, 5
@@ -66,6 +64,7 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 
 <img width="1173" height="587" alt="image" src="https://github.com/user-attachments/assets/15ed1939-469f-4b8f-8e63-b4f372ff4db4" />
 
+
 **Key Observations:**
 - Correct execution of arithmetic operations (add, sub, addi)
 - Successful Store and Load operations (sw → lw), with the value 15 correctly stored and retrieved.
@@ -79,18 +78,20 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 
 <img width="298" height="297" alt="image" src="https://github.com/user-attachments/assets/7355d0dd-9bb4-4512-90de-d1892116ee60" />
 
-Register	Value
-x1	5
-x2	10
-x3	15
-x4	5
-x5	15
-x6	4
-x7	-1
-x8	305418240 (0x12345000)
-x9	65584 (0x00010030)
-x10	100
-x11	56 (0x00000038)
+
+| Register | Value |
+|:--------:|------:|
+| x1  | 5 |
+| x2  | 10 |
+| x3  | 15 |
+| x4  | 5 |
+| x5  | 15 |
+| x6  | 4 |
+| x7  | -1 |
+| x8  | 305418240 (`0x12345000`) |
+| x9  | 65584 (`0x00010030`) |
+| x10 | 100 |
+| x11 | 56 (`0x00000038`) |
 
 **Data Memory:**
 
