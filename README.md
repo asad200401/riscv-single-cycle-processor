@@ -23,280 +23,9 @@ A complete Single-Cycle RISC-V RV32I Processor implemented in SystemVerilog. Sup
 - Load/store memory interface
 - Modular SystemVerilog design
 
-## Supported RV32I Instructions
-
-**R-type**
-- add
-- sub
-- sll
-- slt
-- sltu
-- xor
-- srl
-- sra
-- or
-- and
-  
-**I-Type**
-- addi
-- slli
-- slti
-- sltiu
-- xori
-- srli
-- srai
-- ori
-- andi
-
-**Load Instructions**
-- lb
-- lh
-- lw
-- lbu
-- lhu
-
-**Store Instructions**
-- sb
-- sh
-- sw
-
-**Branch Instructions**
-- beq
-- bne
-- blt
-- bge
-- bltu
-- bgeu
-
-**Jump Instructions**
-- jal
-- jalr
-
-**U-Type Instructions**
-- lui
-- auipc
-
 ## RISC-V Datapath
 
 <img width="722" height="385" alt="image" src="https://github.com/user-attachments/assets/798d6b09-0b15-4289-a37b-1b8362bff9a4" />
-
-## Module Descriptions
-**1. Program Counter**
-
-**Function**
-Stores the current instruction address.
-
-**Inputs**
-- clk
-- rst
-- next_pc
-
-**Outputs**
-- pc
-  
-**Block Diagram**
-
-<img width="306" height="180" alt="image" src="https://github.com/user-attachments/assets/07666edb-ce08-4f8d-beb3-3461c631cb97" />
-
-
-**2. PC + 4**
-
-**Function**
-Calculates sequential next instruction address.
-
-**Equation**
-- PC + 4
-
-**Block Diagram**
- 
-<img width="278" height="113" alt="image" src="https://github.com/user-attachments/assets/477333f1-f2a4-4da1-b222-2d5da5710273" />
- 
-**3. Instruction Memory**
-
-**Function**
-Fetches instructions from memory.
-
-**Features**
-- Word aligned access
-- Uses $readmemh
-
-**Block Diagram**
-
-<img width="261" height="106" alt="image" src="https://github.com/user-attachments/assets/76826071-82c1-4be3-936b-4f2f62a1de4b" />
-
-**4. Register File**
-
-**Function**
-Stores 32 general-purpose registers.
-
-**Features**
-- Two read ports
-- One write port
-- x0 hardwired to zero
-
-**Block Diagram**
-
-<img width="378" height="245" alt="image" src="https://github.com/user-attachments/assets/96ed161c-026f-4f6c-8c9f-0494a18c0f96" />
-
-**5. Arithmetic Logic Unit (ALU)**
-
-**Function**
-Performs arithmetic and logical operations.
-
-**Supported Operations**
-- Addition
-- Subtraction
-- Shift Operations
-- Comparisons
-- AND / OR / XOR
-
-**Block Diagram**
-
-<img width="402" height="196" alt="image" src="https://github.com/user-attachments/assets/e1d442ec-2d05-4b25-bf48-ee1ad82471d1" />
-     
-**6. Immediate Generator**
-
-**Function**
-Generates sign-extended immediates.
-
-**Supported Formats**
-- I-Type
-- S-Type
-- B-Type
-- J-Type
-- U-Type
-
-**Block Diagram**
-
-<img width="385" height="143" alt="image" src="https://github.com/user-attachments/assets/638c7f87-8716-48bc-9bbe-cf59a7bbb96b" />
-
-**7. Control Unit**
-
-**Function**
-Decodes instruction opcode and generates control signals.
-
-**Generated Signals**
-- regWen
-- memRw
-- wbsel
-- pcsel
-- asel
-- bsel
-- imm_sel
-- jalr_sel
-- AluSel
-  
-**Block Diagram**
-
-<img width="409" height="142" alt="image" src="https://github.com/user-attachments/assets/02ddf836-4d4c-40c5-86be-6eb4520f17c4" />
-
-**8. Data Memory**
-
-**Function**
-Performs load and store operations.
-
-**Supported Instructions**
-
-**Loads**
-- lb
-- lh
-- lw
-- lbu
-- lhu
-
-**Stores**
-- sb
-- sh
-- sw
-  
-**Block Diagram**
-
-<img width="372" height="224" alt="image" src="https://github.com/user-attachments/assets/19251d87-6a41-4521-9172-bd0c400e9ca7" />
-
-**9. Write Back Multiplexer**
-
-**Function**
-Selects data written back to register file.
-
-**Sources**
-- ALU Result
-- Data Memory Output
-- PC + 4
-
-**Block Diagram**    
-
-<img width="386" height="224" alt="image" src="https://github.com/user-attachments/assets/d68996a7-d8c5-43f6-a8b8-a72918436e1b" />
-
-**10. A_MUX**
-
-**Function**
-Selects data1 or PC.
-
-**Sources**
-- PC
-- data1
-  
-**Block Diagram**
-
-<img width="403" height="225" alt="image" src="https://github.com/user-attachments/assets/52a4c254-f6d9-450f-8914-8bfa16343b8b" />
-
-**10. B_MUX**
-
-**Function**
-Selects imm value or data2.
-
-**Sources**
-- imm_out
-- data2
-  
-**Block Diagram**
-
-<img width="394" height="211" alt="image" src="https://github.com/user-attachments/assets/9ea94c11-008e-49b4-be3c-cd38a52f3f22" />
-
-**11. PC MUX**
-
-**Function**
-Selects next PC source.
-
-**Sources**
-- PC + 4
-- Branch Target
-- Jump Target
-
-**Block Diagram**
-
-<img width="411" height="227" alt="image" src="https://github.com/user-attachments/assets/1d3dc9ef-70f8-48ba-8d27-54873fc3b6ca" />
-
-**12. Branch Comparator**
-
-**Function**
-Performs branch comparisons.
-
-**Outputs**
-- Eq
-- Lt
-
-**Block Diagram**
-
-<img width="368" height="219" alt="image" src="https://github.com/user-attachments/assets/6ef11d69-ca0f-4486-8a30-61fecafb5862" />
-            
-**13. Branch Unit**
-
-**Function**
-Determines whether branch should be taken.
-
-**Supported Branches**
-- beq
-- bne
-- blt
-- bge
-- bltu
-- bgeu
-
-**Block Diagram**
-
-<img width="430" height="221" alt="image" src="https://github.com/user-attachments/assets/2ed69095-313b-42b9-95ae-d8e4bfa18812" />
-
 
 ## Instruction Flow
 
@@ -313,49 +42,61 @@ Determines whether branch should be taken.
 ## Simulation
 
 **Vivado Simulation**
-- Add RTL files
-- Add testbench files
-- Add .mem files
-- Run Behavioral Simulation
-- Observe waveforms
 
 ## Example Test Program
 
-- addi x1,x0,5
-- addi x2,x0,10
-- addi x10,x0,100
-- add x3,x1,x2
-- sub x4,x2,x1
-- sw x3,0(x10)
-- lw x5,0(x10)
-- beq x3,x5,label
-- jal x1,target
+- addi x1, x0, 5
+- addi x2, x0, 10
+- addi x10, x0, 100
+- add  x3, x1, x2
+- sub  x4, x2, x1
+- sw   x3, 0(x10)
+- lw   x5, 0(x10)
+- beq  x3, x5, label
+- jal  x1, target
 - label:
-- addi x6,x0,4
+- addi x6, x0, 4
 - target:
-- sub x7,x6,x1
+- sub  x7, x6, x1
+- lui  x8, 0x12345
+- auipc x9, 0x10
+- jalr x11, x9, 0
 
 ## Simulation Results
 
-<img width="1366" height="447" alt="image" src="https://github.com/user-attachments/assets/4541587a-f264-4925-aa61-dbb74d7297df" />
+<img width="1173" height="587" alt="image" src="https://github.com/user-attachments/assets/15ed1939-469f-4b8f-8e63-b4f372ff4db4" />
 
 **Key Observations:**
 - Correct execution of arithmetic operations (add, sub, addi)
-- Successful Store and Load operations (sw → lw)
-- Correct Branch behavior (beq taken)
-- Successful Jump (jal) with proper PC update and link register (x1) update
+- Successful Store and Load operations (sw → lw), with the value 15 correctly stored and retrieved.
+- Correct Branch behavior (beq taken), successfully skipping the jal instruction and redirecting the PC to the label.
+- Successful execution of Upper Immediate instruction (lui) with correct immediate loading into x8.
+- Correct execution of AUIPC instruction, calculating the PC-relative address and storing the result in x9.
+- Successful execution of JALR instruction, with correct PC redirection to the target address and link register (x11) update.
+- Correct execution of subtraction using previously calculated register values (sub x7, x6, x1).
 
 **Register File after execution:**
 
-<img width="296" height="455" alt="image" src="https://github.com/user-attachments/assets/1e02559c-a79a-4553-bbec-f093f297307c" />
+<img width="298" height="297" alt="image" src="https://github.com/user-attachments/assets/7355d0dd-9bb4-4512-90de-d1892116ee60" />
 
-x1 = 5, x2 = 10, x3 = 15, x4 = 5, x5 = 15, x6 = 4, x7 = -1, x10 = 100
+Register	Value
+x1	5
+x2	10
+x3	15
+x4	5
+x5	15
+x6	4
+x7	-1
+x8	305418240 (0x12345000)
+x9	65584 (0x00010030)
+x10	100
+x11	56 (0x00000038)
 
 **Data Memory:**
 
-<img width="302" height="485" alt="image" src="https://github.com/user-attachments/assets/a0ac864f-ae87-4b58-96ed-5ec012c6f312" />
+<img width="261" height="276" alt="image" src="https://github.com/user-attachments/assets/24522a43-3d70-4758-8b79-435c34cda203" />
 
-mem[25] = 15 (value stored by sw)
+- mem[25] = 15 (value stored by sw at byte address 100 and successfully retrieved by lw).
 
 ## Tools Used
 
@@ -367,9 +108,4 @@ mem[25] = 15 (value stored by sw)
 
 **Asad Iqbal**
 
-Built as part of RISC-V learning project.
-
-**Star ⭐ this repo if you find it useful!**
-
-Contributions and improvements are welcome.
 
